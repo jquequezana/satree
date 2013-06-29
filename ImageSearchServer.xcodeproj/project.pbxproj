@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1869F176177E8AF5004E7265 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1869F175177E8AF5004E7265 /* main.cpp */; };
-		1869F178177E8AF5004E7265 /* ImageSearchServer.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1869F177177E8AF5004E7265 /* ImageSearchServer.1 */; };
+		1869F176177E8AF5004E7265 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1869F175177E8AF5004E7265 /* main.cpp */; settings = {COMPILER_FLAGS = "-w"; }; };
+		1869F183177E8B95004E7265 /* libXmlRpc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1869F182177E8B95004E7265 /* libXmlRpc.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -18,7 +18,6 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				1869F178177E8AF5004E7265 /* ImageSearchServer.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -27,7 +26,14 @@
 /* Begin PBXFileReference section */
 		1869F172177E8AF5004E7265 /* ImageSearchServer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ImageSearchServer; sourceTree = BUILT_PRODUCTS_DIR; };
 		1869F175177E8AF5004E7265 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		1869F177177E8AF5004E7265 /* ImageSearchServer.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ImageSearchServer.1; sourceTree = "<group>"; };
+		1869F17E177E8B2C004E7265 /* DataSetLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSetLoader.h; sourceTree = "<group>"; };
+		1869F17F177E8B2C004E7265 /* ImageSearchServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSearchServer.h; sourceTree = "<group>"; };
+		1869F180177E8B2C004E7265 /* RecordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordManager.h; sourceTree = "<group>"; };
+		1869F181177E8B2C004E7265 /* TimeSeries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSeries.h; sourceTree = "<group>"; };
+		1869F182177E8B95004E7265 /* libXmlRpc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libXmlRpc.a; path = ImageSearchServer/libXmlRpc.a; sourceTree = "<group>"; };
+		1869F184177EA7DE004E7265 /* stLinearSearch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stLinearSearch.h; sourceTree = "<group>"; };
+		1869F185177EB1EC004E7265 /* SATreeAdaptee.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SATreeAdaptee.h; sourceTree = "<group>"; };
+		1869F186177EB33C004E7265 /* SATreeAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SATreeAdapter.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1869F183177E8B95004E7265 /* libXmlRpc.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +51,7 @@
 		1869F169177E8AF5004E7265 = {
 			isa = PBXGroup;
 			children = (
+				1869F182177E8B95004E7265 /* libXmlRpc.a */,
 				1869F174177E8AF5004E7265 /* ImageSearchServer */,
 				1869F173177E8AF5004E7265 /* Products */,
 			);
@@ -60,8 +68,14 @@
 		1869F174177E8AF5004E7265 /* ImageSearchServer */ = {
 			isa = PBXGroup;
 			children = (
+				1869F186177EB33C004E7265 /* SATreeAdapter.h */,
+				1869F184177EA7DE004E7265 /* stLinearSearch.h */,
+				1869F17E177E8B2C004E7265 /* DataSetLoader.h */,
+				1869F17F177E8B2C004E7265 /* ImageSearchServer.h */,
+				1869F180177E8B2C004E7265 /* RecordManager.h */,
+				1869F181177E8B2C004E7265 /* TimeSeries.h */,
 				1869F175177E8AF5004E7265 /* main.cpp */,
-				1869F177177E8AF5004E7265 /* ImageSearchServer.1 */,
+				1869F185177EB1EC004E7265 /* SATreeAdaptee.h */,
 			);
 			path = ImageSearchServer;
 			sourceTree = "<group>";
@@ -129,8 +143,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -138,7 +152,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -151,8 +165,20 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"/usr/local/Cellar/boost/1.53.0/include\n/usr/local/Cellar/boost/1.53.0/include/**",
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					"/usr/local/Cellar/boost/1.53.0/lib\n/usr/local/Cellar/boost/1.53.0/lib\n/usr/local/Cellar/boost/1.53.0/lib\n/usr/local/Cellar/boost/1.53.0/lib",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-lboost_filesystem-mt",
+					"-lboost_system-mt",
+				);
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -162,8 +188,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -172,13 +198,25 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"/usr/local/Cellar/boost/1.53.0/include\n/usr/local/Cellar/boost/1.53.0/include/**",
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					"/usr/local/Cellar/boost/1.53.0/lib\n/usr/local/Cellar/boost/1.53.0/lib\n/usr/local/Cellar/boost/1.53.0/lib\n/usr/local/Cellar/boost/1.53.0/lib",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_LDFLAGS = (
+					"-lboost_filesystem-mt",
+					"-lboost_system-mt",
+				);
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -186,6 +224,10 @@
 		1869F17C177E8AF5004E7265 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/ImageSearchServer\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -193,6 +235,10 @@
 		1869F17D177E8AF5004E7265 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/ImageSearchServer\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -216,6 +262,7 @@
 				1869F17D177E8AF5004E7265 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
