@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <sstream>
 
 #include "boost/filesystem/operations.hpp"
 #include "boost/filesystem/path.hpp"
@@ -161,16 +162,18 @@ ImageSearchServer::~ImageSearchServer() {
 }
 
 void ImageSearchServer::createAccessMethod( const std::string& name, bool &isOpen) {
-	
 	if(tree == NULL) {
 		tree = MetricAccessMethodPtr( new tMetricAccessMethod(diskPageManager) );
 	}
     if (textIndex == NULL) {
+        std::stringstream path;
+        path << name << ".btree";
+        const std::string pathReal = path.str();
         TextTreeIsOpened = false;
         DiskPageManager* pageManager = new DiskPageManager();
-        if(!pageManager->open("/tmp/index.txt")) {
+        if(!pageManager->open(pathReal.c_str())) {
            TextTreeIsOpened = true;
-           pageManager->create("/tmp/index.txt", 256);
+           pageManager->create(pathReal.c_str(), 256);
         }
         textIndex = new Btree(pageManager, true);
     }
@@ -221,7 +224,7 @@ void ImageSearchServer::insert( std::string imageFile) {
     String* obj = new String(imageFile);
     
     /* Already DataSet Textree */
-    if (TextTreeIsOpened == false) {
+    if (TextTreeIsOpened) {
         textIndex->insert(Btree::value_type(obj, 0));
     }
     
