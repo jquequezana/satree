@@ -24,6 +24,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		185EBA7E177FE17000056823 /* btree.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = btree.h; sourceTree = "<group>"; };
+		185EBA7F177FE1DE00056823 /* PageManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageManager.h; sourceTree = "<group>"; };
+		185EBA80177FE1FB00056823 /* Object.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Object.h; sourceTree = "<group>"; };
+		185EBA81177FE21000056823 /* ObjectT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectT.h; sourceTree = "<group>"; };
+		185EBA82177FE23B00056823 /* defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = defines.h; sourceTree = "<group>"; };
+		185EBA83177FE26100056823 /* Page.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Page.h; sourceTree = "<group>"; };
 		1869F172177E8AF5004E7265 /* ImageSearchServer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ImageSearchServer; sourceTree = BUILT_PRODUCTS_DIR; };
 		1869F175177E8AF5004E7265 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		1869F17E177E8B2C004E7265 /* DataSetLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSetLoader.h; sourceTree = "<group>"; };
@@ -68,16 +74,46 @@
 		1869F174177E8AF5004E7265 /* ImageSearchServer */ = {
 			isa = PBXGroup;
 			children = (
-				1869F186177EB33C004E7265 /* SATreeAdapter.h */,
-				1869F184177EA7DE004E7265 /* stLinearSearch.h */,
-				1869F17E177E8B2C004E7265 /* DataSetLoader.h */,
-				1869F17F177E8B2C004E7265 /* ImageSearchServer.h */,
-				1869F180177E8B2C004E7265 /* RecordManager.h */,
-				1869F181177E8B2C004E7265 /* TimeSeries.h */,
+				1869F18A177EDE68004E7265 /* libs */,
+				1869F189177EDE3D004E7265 /* SATree */,
+				1869F188177EDE2F004E7265 /* BTree */,
 				1869F175177E8AF5004E7265 /* main.cpp */,
-				1869F185177EB1EC004E7265 /* SATreeAdaptee.h */,
+				1869F17F177E8B2C004E7265 /* ImageSearchServer.h */,
 			);
 			path = ImageSearchServer;
+			sourceTree = "<group>";
+		};
+		1869F188177EDE2F004E7265 /* BTree */ = {
+			isa = PBXGroup;
+			children = (
+				185EBA7E177FE17000056823 /* btree.h */,
+				185EBA82177FE23B00056823 /* defines.h */,
+				185EBA7F177FE1DE00056823 /* PageManager.h */,
+				185EBA80177FE1FB00056823 /* Object.h */,
+				185EBA81177FE21000056823 /* ObjectT.h */,
+				185EBA83177FE26100056823 /* Page.h */,
+			);
+			name = BTree;
+			sourceTree = "<group>";
+		};
+		1869F189177EDE3D004E7265 /* SATree */ = {
+			isa = PBXGroup;
+			children = (
+				1869F186177EB33C004E7265 /* SATreeAdapter.h */,
+				1869F185177EB1EC004E7265 /* SATreeAdaptee.h */,
+			);
+			name = SATree;
+			sourceTree = "<group>";
+		};
+		1869F18A177EDE68004E7265 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				1869F184177EA7DE004E7265 /* stLinearSearch.h */,
+				1869F17E177E8B2C004E7265 /* DataSetLoader.h */,
+				1869F180177E8B2C004E7265 /* RecordManager.h */,
+				1869F181177E8B2C004E7265 /* TimeSeries.h */,
+			);
+			name = libs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

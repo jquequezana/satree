@@ -24,6 +24,10 @@
 #include "stLinearSearch.h"
 #include "SATreeAdapter.h"
 
+#include "btree.h"
+#include "ObjectT.h"
+
+
 namespace fs = boost::filesystem;
 
 #define  DEBUG_MODE
@@ -55,7 +59,8 @@ private:
 	typedef tDBMTree tMetricAccessMethod;
 	typedef tDBMTree* MetricAccessMethodPtr;
 
-	typedef set<std::string>  Btree;
+    typedef ObjectT<std::string> String;
+	typedef mds::BTree<String> Btree;
 
 private:
 
@@ -69,7 +74,10 @@ private:
 
 	stDiskPageManagerPtr diskPageManager;
 	MetricAccessMethodPtr tree;
-	Btree  * textIndex;
+    
+	Btree* textIndex;
+    bool TextTreeIsOpened;
+    
 	RecordManager<StringPath>* recordManager;
 
 
@@ -100,6 +108,7 @@ ImageSearchServer::ImageSearchServer(XmlRpcServer* s)
 	tree = NULL;
 	diskPageManager = NULL;
 	recordManager = NULL;
+    textIndex = NULL;
 }
 
 
@@ -119,7 +128,6 @@ void ImageSearchServer::execute(XmlRpcValue& params, XmlRpcValue& result) {
 			result[i] = randomSet[i];
 		}
 	}
-
 	else if(operation == "query") {
 		std::string queryObject = params[1];
 		int kNearestNeighbors = params[2];
@@ -135,11 +143,13 @@ void ImageSearchServer::execute(XmlRpcValue& params, XmlRpcValue& result) {
 		std::string queryObject = params[1];
 		int kNearestNeighbors = params[2];
 		 
-		Btree::iterator iter = textIndex->find(queryObject);
+        String object = String(queryObject);
+		Btree::iterator iter = textIndex->find(object);
 		
 		for (int i = 0; iter != textIndex->end() && i < kNearestNeighbors; i++ ) {
-			 result[i] = *iter;
-			 iter++;
+			result[i] = (*iter).m_pObj->m_Data;
+            cout << result[i] << endl;
+			iter++;
 		}
 	}
 }
@@ -154,8 +164,16 @@ void ImageSearchServer::createAccessMethod( const std::string& name, bool &isOpe
 	
 	if(tree == NULL) {
 		tree = MetricAccessMethodPtr( new tMetricAccessMethod(diskPageManager) );
-		textIndex = new Btree();
 	}
+    if (textIndex == NULL) {
+        TextTreeIsOpened = false;
+        DiskPageManager* pageManager = new DiskPageManager();
+        if(!pageManager->open("/tmp/index.txt")) {
+           TextTreeIsOpened = true;
+           pageManager->create("/tmp/index.txt", 256);
+        }
+        textIndex = new Btree(pageManager, true);
+    }
 	recordManager = new RecordManager<StringPath>(name + ".objects");
 
 	std::cout << "isOpen: " <<   treeOpened  << "\n";
@@ -200,7 +218,13 @@ void ImageSearchServer::insert( std::string imageFile) {
 
 	TimeSeriesPtr object = TimeSeriesPtr(new tTimeSeries(featureVector, id));
 	tree->Add(object);
-	textIndex->insert(imageFile);
+    String* obj = new String(imageFile);
+    
+    /* Already DataSet Textree */
+    if (TextTreeIsOpened == false) {
+        textIndex->insert(Btree::value_type(obj, 0));
+    }
+    
 	std::cout << "insert: " <<   tree->GetNumberOfObjects() << "\n";
 }
 
@@ -348,7 +372,7 @@ void ImageSearchServer::setLoader(std::string datasetName,std::string file){
 	}
 	else {
 		std::cout << "create randoms";
-		DataSetLoader *loader=new DataSetLoader(sDatasetPath, objectExtension);
+		DataSetLoader *loader = new DataSetLoader(sDatasetPath, objectExtension);
 
 		loader->load();
 

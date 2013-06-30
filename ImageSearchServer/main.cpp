@@ -23,10 +23,13 @@ int main(int argc, char* argv[])
 
 	ImageSearchServer imageSearch(&s);
 
+	//std::string datasetPath = "/Users/jquequezana/workspace/files/flickr";
+	//std::string dataExtension  = ".rgb";
+
 	std::string datasetPath = "/Users/jquequezana/workspace/files/facedb2";
 	std::string dataExtension  = ".sfi.pca";
-
-	imageSearch.setConfiguration(datasetPath, dataExtension);
+	
+    imageSearch.setConfiguration(datasetPath, dataExtension);
 	//imageSearch.getRandomSet(datasetPath);
 	imageSearch.query("01.jpg", 20 );
 /*
